@@ -1,0 +1,271 @@
+╔══════════════════════════════════════════════════════════════════╗
+║              HƯỚNG DẪN SỬ DỤNG — TramOnThi                    ║
+║       Nền tảng ôn thi THPT Quốc gia trực tuyến                ║
+║       Môn: Toán · Vật Lý · Hóa học · Tiếng Anh               ║
+║       Lớp: 10 · 11 · 12 · Ôn thi Đại học                     ║
+╚══════════════════════════════════════════════════════════════════╝
+
+
+YÊU CẦU HỆ THỐNG
+─────────────────
+• Node.js  : Đã có sẵn trong thư mục runtime\ (KHÔNG cần cài thêm)
+• Trình duyệt: Chrome / Edge / Firefox mới nhất
+
+
+KHỞI ĐỘNG NHANH
+───────────────
+  Có 2 cách khởi động:
+
+  ┌─ KHOI_DONG_NGAM.vbs  (khuyên dùng cho người dùng cuối) ─────┐
+  │  Double-click → server chạy ẩn, không có cửa sổ terminal    │
+  │  Popup nhỏ báo "đã khởi động" tự tắt sau 4 giây             │
+  │  Mở trình duyệt thủ công: http://localhost:3000             │
+  │  Tắt server: Task Manager → tìm node.exe → End Task         │
+  └───────────────────────────────────────────────────────────────┘
+
+  ┌─ KHOI_DONG.bat  (dành cho lập trình viên) ───────────────────┐
+  │  Mở terminal hiển thị log, tự động mở trình duyệt           │
+  │  Tự phát hiện chế độ:                                        │
+  │    • Có bản build sẵn → production (~1–2 giây)              │
+  │    • Không có build   → dev mode (hot reload)               │
+  └───────────────────────────────────────────────────────────────┘
+
+  Để đóng gói chia sẻ: Double-click DONG_GOI.bat
+    → Tự build + nén thành TramOnThi-FullPackage.zip
+
+
+CÁC ĐƯỜNG DẪN TRUY CẬP
+────────────────────────
+  Trang chủ : http://localhost:3000
+  Đăng ký   : http://localhost:3000/register
+
+  ┌─ CỔNG HỌC SINH ──────────────────────────────────────────────┐
+  │  http://localhost:3000/login                                  │
+  │                                                               │
+  │  Email    : hoc.sinh@tramongthi.edu.vn                        │
+  │  Mật khẩu : Student@2026                                      │
+  │  Sau đăng nhập → /dashboard                                   │
+  └───────────────────────────────────────────────────────────────┘
+
+  ┌─ CỔNG GIẢNG VIÊN ────────────────────────────────────────────┐
+  │  http://localhost:3000/instructor/login                       │
+  │                                                               │
+  │  Email    : giang.vien@tramongthi.edu.vn                      │
+  │  Mật khẩu : Instructor@2026                                   │
+  │  Sau đăng nhập → /instructor                                  │
+  └───────────────────────────────────────────────────────────────┘
+
+  ┌─ CỔNG QUẢN TRỊ ──────────────────────────────────────────────┐
+  │  http://localhost:3000/admin/login                            │
+  │                                                               │
+  │  Email    : admin@tramongthi.edu.vn                           │
+  │  Mật khẩu : Admin@2026                                        │
+  │  Sau đăng nhập → /admin                                       │
+  └───────────────────────────────────────────────────────────────┘
+
+  Lưu ý: Mỗi cổng chỉ nhận đúng vai trò — đăng nhập sai cổng sẽ
+  hiện thông báo lỗi và gợi ý link đúng.
+
+
+TÀI KHOẢN HỌC SINH MẪU THÊM (mật khẩu: Student@2026)
+───────────────────────────────────────────────────────
+  Nguyễn Minh Khoa  →  khoa.nguyen@student.tramongthi.edu.vn
+  Phạm Thị Thu      →  thu.pham@student.tramongthi.edu.vn
+  Lê Hoàng Nam      →  nam.le@student.tramongthi.edu.vn
+  Đỗ Văn Hùng       →  hung.do@student.tramongthi.edu.vn
+  Vũ Thị Hà         →  ha.vu@student.tramongthi.edu.vn
+  Bùi Quốc Toản     →  toan.bui@student.tramongthi.edu.vn
+
+
+DỮ LIỆU MẪU ĐÃ CÓ SẴN
+────────────────────────
+• 7 học sinh, 21 lượt đăng ký khóa học
+• 193 bài học đã hoàn thành
+• 80 lần làm quiz (điểm 60–100%)
+• 11 khảo sát (7 pre-test + 4 post-test)
+
+  Để tạo lại sau khi reset database:
+    npm run db:seed    → Khóa học + tài khoản gốc
+    npm run db:demo    → Dữ liệu hoạt động mẫu
+
+
+HƯỚNG DẪN HỌC SINH
+────────────────────
+  Bước 1 – Đăng ký / Đăng nhập
+    1. Vào http://localhost:3000/register
+    2. Điền họ tên, email, mật khẩu (tối thiểu 6 ký tự)
+    3. Nhấn "Tạo tài khoản" → chuyển vào Dashboard
+
+  Bước 2 – Chọn khóa học
+    1. Vào Dashboard: http://localhost:3000/dashboard
+    2. Xem danh sách 16 khóa học (Lớp 10 / 11 / 12 / Ôn thi ĐH)
+    3. Nhấn "Bắt đầu học" hoặc "Tiếp tục" trên card khóa học
+
+  Bước 3 – Học bài
+    1. Đọc nội dung bài học (có bảng, công thức, ví dụ)
+    2. Nhấn "Đánh dấu hoàn thành" khi xong mỗi bài
+    3. Dùng sidebar bên phải để điều hướng giữa các bài
+
+  Bước 4 – Làm bài kiểm tra
+    1. Sau mỗi module, nhấn "Làm bài kiểm tra"
+    2. Chọn đáp án cho từng câu hỏi trắc nghiệm (4 lựa chọn)
+    3. Nhấn "Nộp bài" → xem điểm số, đáp án đúng/sai
+
+  Bước 5 – Khảo sát
+    • Pre-test  : hiện lần đầu vào Dashboard
+    • Post-test : hiện sau khi hoàn thành khóa học
+
+  Hỏi bài với AI
+    • Nhấn nút chat xanh lá góc phải màn hình
+    • Gõ câu hỏi về Toán, Lý, Hóa, Anh → AI trả lời ngay
+    • Enter để gửi, Shift+Enter để xuống dòng
+
+
+HƯỚNG DẪN GIẢNG VIÊN
+──────────────────────
+  Đăng nhập : http://localhost:3000/instructor/login
+  Portal     : http://localhost:3000/instructor  (tất cả tính năng tại đây)
+
+  Giao diện gồm sidebar bên trái với 2 mục:
+
+  [Dashboard] — Thống kê & xuất dữ liệu
+    • Tổng số học sinh, bài hoàn thành, lượt quiz, điểm trung bình
+    • Khảo sát Pre/Post-test: số lượt nộp, tỉ lệ hoàn thành
+    • Xuất CSV: kết quả Quiz, tiến độ học bài, khảo sát Pre/Post
+
+  [Quản lý nội dung] — Tạo & chỉnh sửa nội dung
+    • Tạo khóa học mới (chọn môn, khối lớp, mô tả)
+    • Thêm module vào khóa học
+    • Thêm / sửa bài học (soạn nội dung Markdown, upload file PDF/ảnh/Word)
+    • Tạo quiz: thêm câu hỏi 4 lựa chọn, chọn đáp án đúng
+    • Xuất bản / Thu hồi khóa học (học sinh chỉ thấy khóa đã xuất bản)
+    • Xóa module, bài học, câu hỏi, khóa học
+
+  Lưu ý phân quyền
+    • Giảng viên KHÔNG vào được /admin
+    • Admin KHÔNG vào được /instructor (tách biệt hoàn toàn)
+
+
+HƯỚNG DẪN QUẢN TRỊ VIÊN
+─────────────────────────
+  Đăng nhập : http://localhost:3000/admin/login
+  Dashboard  : http://localhost:3000/admin
+  Giao diện  : Nền trắng chuyên nghiệp (khác biệt với giảng viên)
+
+  Thống kê hệ thống
+    • Tổng người dùng / Học sinh / Giảng viên
+    • Khóa học (đã xuất bản / tổng số)
+    • Lượt làm quiz và điểm trung bình
+    • Biểu đồ phân bổ vai trò
+
+  Quản lý người dùng
+    • Xem toàn bộ danh sách (tên, email, vai trò, ngày tạo)
+    • Đổi vai trò: Học sinh ↔ Giảng viên ↔ Quản trị
+    • Xóa tài khoản (yêu cầu xác nhận trước khi xóa)
+    • Lưu ý: không thể tự đổi role / xóa chính mình
+
+  Phân quyền truy cập
+    • Chỉ ADMIN mới vào được /admin
+    • Admin vào /instructor → tự redirect sang /admin
+    • Học sinh vào /instructor hoặc /admin → redirect /dashboard
+
+
+TÍNH NĂNG AI CHATBOT
+─────────────────────
+• Vị trí  : Nút tròn xanh lá, góc dưới phải màn hình
+• Model AI : GPT-4o Mini (OpenAI)
+• Ngôn ngữ : Tiếng Việt (mặc định), Tiếng Anh (khi hỏi grammar)
+• Phạm vi  : Toán, Vật Lý, Hóa học, Tiếng Anh THPT
+• Lưu ý   : AI có thể sai – nên kiểm tra lại với giáo viên / SGK
+
+
+CẤU TRÚC KHÓA HỌC
+───────────────────
+  16 khóa học: Lớp 10 / 11 / 12 / Ôn thi Đại học
+  Mỗi khóa học:
+    ├── Module 1
+    │   ├── Bài 1, 2, ... (nội dung markdown)
+    │   └── Bài kiểm tra (5 câu trắc nghiệm)
+    ├── Module 2 ...
+    └── Module 5
+
+  Tổng mỗi khóa: 5 module · 12 bài học · 5 câu/quiz · 4 lựa chọn/câu
+
+  Slug các khóa học (dùng sau /course/):
+    Lớp 10: tieng-anh · toan · vat-ly · hoa-hoc
+    Lớp 11: tieng-anh-11 · toan-11 · vat-ly-11 · hoa-hoc-11
+    Lớp 12: tieng-anh-12 · toan-12 · vat-ly-12 · hoa-hoc-12
+    Ôn thi : on-thi-dh-tieng-anh · on-thi-dh-toan
+             on-thi-dh-vat-ly · on-thi-dh-hoa-hoc
+
+
+CẤU HÌNH MÔI TRƯỜNG (.env)
+────────────────────────────
+  File: elearning-app/.env
+
+  DATABASE_URL              → Đường dẫn database SQLite
+  JWT_SECRET                → Khóa bí mật JWT
+  OPENAI_API_KEY            → API Key OpenAI (chatbot AI)
+  NEXT_PUBLIC_RECAPTCHA_SITE_KEY → Site key Google reCAPTCHA v2
+  RECAPTCHA_SECRET_KEY      → Secret key Google reCAPTCHA v2
+
+
+LỆNH THƯỜNG DÙNG
+─────────────────
+  Khởi động nhanh:
+    Double-click KHOI_DONG.bat
+
+  Chế độ phát triển (khi sửa code):
+    npm run dev
+
+  Build production (sau khi sửa code xong):
+    npm run build
+
+  Tạo dữ liệu:
+    npm run db:seed    → Khóa học + tài khoản gốc
+    npm run db:demo    → Dữ liệu hoạt động mẫu
+
+  Reset database:
+    npx prisma db push --accept-data-loss
+    npx prisma db seed
+    npm run db:demo
+
+  Xem database trực quan:
+    npx prisma studio  →  http://localhost:5555
+
+  Đóng gói để chia sẻ:
+    Double-click DONG_GOI.bat  →  TramOnThi-FullPackage.zip
+
+
+CÁC FILE QUAN TRỌNG
+────────────────────
+  KHOI_DONG_NGAM.vbs   → Khởi động ẩn (dành cho người dùng cuối)
+  KHOI_DONG.bat        → Khởi động có terminal (dành cho lập trình viên)
+  DONG_GOI.bat         → Đóng gói ZIP để chia sẻ
+  prisma/dev.db        → Database SQLite
+  prisma/seed.ts       → Script tạo khóa học + tài khoản gốc
+  prisma/seed-demo.ts  → Script tạo dữ liệu hoạt động mẫu
+  runtime/             → Node.js portable (không cần cài đặt)
+  public/hoc-bai.jpg   → Ảnh nền trang đăng nhập / đăng ký
+
+
+THÔNG TIN DỰ ÁN
+────────────────
+  Tên ứng dụng : TramOnThi
+  Framework    : Next.js 16 (App Router)
+  Ngôn ngữ    : TypeScript
+  Database     : SQLite (Prisma ORM)
+  Giao diện    : Tailwind CSS v4 + Phosphor Icons
+  AI           : OpenAI GPT-4o Mini
+  Bảo mật      : JWT · bcrypt · reCAPTCHA v2
+  Node.js      : v20.18.3 (portable, có sẵn trong runtime\)
+
+
+HỖ TRỢ KỸ THUẬT
+────────────────
+  Nếu gặp vấn đề, liên hệ:
+    Email: lvhuy.kontum@gmail.com
+
+══════════════════════════════════════════════════════════════════
+  Tài liệu này được tạo cho dự án TramOnThi – 2026
+══════════════════════════════════════════════════════════════════

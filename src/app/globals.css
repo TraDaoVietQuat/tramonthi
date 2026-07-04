@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #111827;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Animated gradient border ─────────────────────────────────── */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes spin-border { to { --angle: 360deg; } }
+
+.border-animated {
+  position: relative;
+  border-radius: 1rem;
+  padding: 1px;
+  background: conic-gradient(from var(--angle), #10b981 0%, #06b6d4 25%, #3b82f6 50%, #10b981 75%, #10b981 100%);
+  animation: spin-border 4s linear infinite;
+}
+.border-animated-slow {
+  position: relative;
+  border-radius: 1rem;
+  padding: 1px;
+  background: conic-gradient(from var(--angle), #10b981 0%, #06b6d4 30%, #0ea5e9 60%, #10b981 100%);
+  animation: spin-border 8s linear infinite;
+}
+
+/* ─── Card glow on hover ────────────────────────────────────────── */
+.card-glow {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--angle), transparent 0%, #10b981 15%, #06b6d4 30%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: spin-border 3s linear infinite;
+  z-index: 0;
+}
+.card-glow:hover::before { opacity: 1; }
+.card-glow > * { position: relative; z-index: 1; }
+
+/* ─── Text gradient ─────────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Shimmer text ──────────────────────────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, #10b981 0%, #34d399 25%, #06b6d4 50%, #34d399 75%, #10b981 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ─── Glow button ───────────────────────────────────────────────── */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(16,185,129,0.3); }
+  50% { box-shadow: 0 0 35px rgba(16,185,129,0.6), 0 0 60px rgba(6,182,212,0.3); }
+}
+.glow-btn { animation: glow-pulse 2.5s ease-in-out infinite; }
+
+/* ─── Float animations ──────────────────────────────────────────── */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes float-y-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+.animate-float { animation: float-y 3s ease-in-out infinite; }
+.animate-float-delayed { animation: float-y-slow 3.5s ease-in-out infinite 1s; }
+
+/* ─── Fade up animations ────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.2s ease-out; }
+.animate-fade-up   { animation: fade-up 0.5s ease-out both; }
+.animate-fade-up-1 { animation: fade-up 0.5s 0.1s ease-out both; }
+.animate-fade-up-2 { animation: fade-up 0.5s 0.2s ease-out both; }
+.animate-fade-up-3 { animation: fade-up 0.5s 0.3s ease-out both; }
+.animate-fade-up-4 { animation: fade-up 0.5s 0.4s ease-out both; }
+
+/* ─── Progress bar animation ────────────────────────────────────── */
+@keyframes progress-fill { from { width: 0%; } }
+.progress-bar { animation: progress-fill 1.2s cubic-bezier(0.25,1,0.5,1) both; }
+
+/* ─── Gradient background animation ────────────────────────────── */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.gradient-animate { background-size: 200% 200%; animation: gradient-shift 6s ease infinite; }
+
+/* ─── Border radius modifiers ───────────────────────────────────── */
+.border-animated-sm  { border-radius: 0.625rem; }
+.border-animated-lg  { border-radius: 1.5rem; }
+.border-inner-sm { border-radius: calc(0.625rem - 1px); }
+.border-inner-lg { border-radius: calc(1.5rem - 1px); }
+.border-inner-md { border-radius: calc(1rem - 1px); }
+
+/* ─── Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #10b981; }

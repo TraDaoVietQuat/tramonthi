@@ -1,12 +1,12 @@
 // Prisma schema cho E-learning NCKH
-// Dev: SQLite local. Production: doi provider sang "postgresql" + DATABASE_URL.
+// PostgreSQL (Railway managed Postgres) — dung chung cho local va production qua DATABASE_URL.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 

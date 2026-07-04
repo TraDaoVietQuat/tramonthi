@@ -52,3 +52,7 @@ runtime/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# downloaded Railway log exports
+logs.*.csv
+logs.*.json

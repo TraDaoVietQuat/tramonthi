@@ -2,7 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 import { getSession } from "@/lib/auth";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+let openai: OpenAI | null = null;
+function getOpenAI() {
+  if (!openai) {
+    openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  }
+  return openai;
+}
 
 const SYSTEM_PROMPT = `Bạn là trợ lý học tập AI của TramOnThi – nền tảng ôn thi THPT Quốc gia hàng đầu Việt Nam.
 
@@ -32,7 +38,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const completion = await openai.chat.completions.create({
+    const completion = await getOpenAI().chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },

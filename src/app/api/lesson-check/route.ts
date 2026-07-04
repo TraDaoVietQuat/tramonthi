@@ -2,7 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 import { getSession } from "@/lib/auth";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+let openai: OpenAI | null = null;
+function getOpenAI() {
+  if (!openai) {
+    openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  }
+  return openai;
+}
 
 export async function POST(req: NextRequest) {
   const user = await getSession();
@@ -36,7 +42,7 @@ Yêu cầu:
 (answer là index 0-3 của đáp án đúng trong mảng options)`;
 
   try {
-    const completion = await openai.chat.completions.create({
+    const completion = await getOpenAI().chat.completions.create({
       model: "gpt-4o-mini",
       messages: [{ role: "user", content: prompt }],
       max_tokens: 800,

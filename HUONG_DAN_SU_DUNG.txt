@@ -1,7 +1,7 @@
 ╔══════════════════════════════════════════════════════════════════╗
 ║              HƯỚNG DẪN SỬ DỤNG — TramOnThi                    ║
 ║       Nền tảng ôn thi THPT Quốc gia trực tuyến                ║
-║       Môn: Toán · Vật Lý · Hóa học · Tiếng Anh               ║
+║       Môn: Toán · Vật Lý · Hóa học · Tiếng Anh · Lịch sử     ║
 ║       Lớp: 10 · 11 · 12 · Ôn thi Đại học                     ║
 ╚══════════════════════════════════════════════════════════════════╝
 
@@ -36,11 +36,17 @@ KHỞI ĐỘNG NHANH
 
 CÁC ĐƯỜNG DẪN TRUY CẬP
 ────────────────────────
-  Trang chủ : http://localhost:3000
-  Đăng ký   : http://localhost:3000/register
+  Bản chạy thật (online)   : https://tramonthi-production.up.railway.app
+  Bản chạy tại máy (local) : http://localhost:3000
+    (lưu ý: bản local cần tự cấu hình DATABASE_URL trỏ tới một
+     PostgreSQL còn hoạt động thì mới đăng nhập/xem dữ liệu được —
+     nên ưu tiên dùng bản online ở trên để test nhanh)
+  Đăng ký                  : <domain>/register
+
+  Chỉ có ĐÚNG 3 tài khoản trong hệ thống — mỗi tài khoản một vai trò:
 
   ┌─ CỔNG HỌC SINH ──────────────────────────────────────────────┐
-  │  http://localhost:3000/login                                  │
+  │  <domain>/login                                               │
   │                                                               │
   │  Email    : hoc.sinh@tramongthi.edu.vn                        │
   │  Mật khẩu : Student@2026                                      │
@@ -48,7 +54,7 @@ CÁC ĐƯỜNG DẪN TRUY CẬP
   └───────────────────────────────────────────────────────────────┘
 
   ┌─ CỔNG GIẢNG VIÊN ────────────────────────────────────────────┐
-  │  http://localhost:3000/instructor/login                       │
+  │  <domain>/instructor/login                                    │
   │                                                               │
   │  Email    : giang.vien@tramongthi.edu.vn                      │
   │  Mật khẩu : Instructor@2026                                   │
@@ -56,49 +62,39 @@ CÁC ĐƯỜNG DẪN TRUY CẬP
   └───────────────────────────────────────────────────────────────┘
 
   ┌─ CỔNG QUẢN TRỊ ──────────────────────────────────────────────┐
-  │  http://localhost:3000/admin/login                            │
+  │  <domain>/admin/login                                         │
   │                                                               │
   │  Email    : admin@tramongthi.edu.vn                           │
   │  Mật khẩu : Admin@2026                                        │
   │  Sau đăng nhập → /admin                                       │
   └───────────────────────────────────────────────────────────────┘
 
+  (thay <domain> bằng https://tramonthi-production.up.railway.app
+   hoặc http://localhost:3000 tùy bạn đang dùng bản nào)
+
   Lưu ý: Mỗi cổng chỉ nhận đúng vai trò — đăng nhập sai cổng sẽ
   hiện thông báo lỗi và gợi ý link đúng.
 
 
-TÀI KHOẢN HỌC SINH MẪU THÊM (mật khẩu: Student@2026)
-───────────────────────────────────────────────────────
-  Nguyễn Minh Khoa  →  khoa.nguyen@student.tramongthi.edu.vn
-  Phạm Thị Thu      →  thu.pham@student.tramongthi.edu.vn
-  Lê Hoàng Nam      →  nam.le@student.tramongthi.edu.vn
-  Đỗ Văn Hùng       →  hung.do@student.tramongthi.edu.vn
-  Vũ Thị Hà         →  ha.vu@student.tramongthi.edu.vn
-  Bùi Quốc Toản     →  toan.bui@student.tramongthi.edu.vn
-
-
 DỮ LIỆU MẪU ĐÃ CÓ SẴN
 ────────────────────────
-• 7 học sinh, 21 lượt đăng ký khóa học
-• 193 bài học đã hoàn thành
-• 80 lần làm quiz (điểm 60–100%)
-• 11 khảo sát (7 pre-test + 4 post-test)
+• 3 tài khoản (Admin, Giảng viên, Học sinh — không có tài khoản mẫu nào khác)
+• 17 khóa học đầy đủ nội dung, chưa có lượt học/quiz nào (dữ liệu sạch)
 
-  Để tạo lại sau khi reset database:
-    npm run db:seed    → Khóa học + tài khoản gốc
-    npm run db:demo    → Dữ liệu hoạt động mẫu
+  Để tạo lại tài khoản + khóa học sau khi reset database:
+    npm run db:seed    → Khóa học + 3 tài khoản gốc
 
 
 HƯỚNG DẪN HỌC SINH
 ────────────────────
   Bước 1 – Đăng ký / Đăng nhập
-    1. Vào http://localhost:3000/register
+    1. Vào <domain>/register
     2. Điền họ tên, email, mật khẩu (tối thiểu 6 ký tự)
     3. Nhấn "Tạo tài khoản" → chuyển vào Dashboard
 
   Bước 2 – Chọn khóa học
-    1. Vào Dashboard: http://localhost:3000/dashboard
-    2. Xem danh sách 16 khóa học (Lớp 10 / 11 / 12 / Ôn thi ĐH)
+    1. Vào Dashboard: <domain>/dashboard
+    2. Xem danh sách 17 khóa học (Lớp 10 / 11 / 12 / Ôn thi ĐH)
     3. Nhấn "Bắt đầu học" hoặc "Tiếp tục" trên card khóa học
 
   Bước 3 – Học bài
@@ -123,8 +119,8 @@ HƯỚNG DẪN HỌC SINH
 
 HƯỚNG DẪN GIẢNG VIÊN
 ──────────────────────
-  Đăng nhập : http://localhost:3000/instructor/login
-  Portal     : http://localhost:3000/instructor  (tất cả tính năng tại đây)
+  Đăng nhập : <domain>/instructor/login
+  Portal     : <domain>/instructor  (tất cả tính năng tại đây)
 
   Giao diện gồm sidebar bên trái với 2 mục:
 
@@ -148,8 +144,8 @@ HƯỚNG DẪN GIẢNG VIÊN
 
 HƯỚNG DẪN QUẢN TRỊ VIÊN
 ─────────────────────────
-  Đăng nhập : http://localhost:3000/admin/login
-  Dashboard  : http://localhost:3000/admin
+  Đăng nhập : <domain>/admin/login
+  Dashboard  : <domain>/admin
   Giao diện  : Nền trắng chuyên nghiệp (khác biệt với giảng viên)
 
   Thống kê hệ thống
@@ -181,20 +177,24 @@ TÍNH NĂNG AI CHATBOT
 
 CẤU TRÚC KHÓA HỌC
 ───────────────────
-  16 khóa học: Lớp 10 / 11 / 12 / Ôn thi Đại học
+  17 khóa học: Lớp 10 / 11 / 12 / Ôn thi Đại học
   Mỗi khóa học:
-    ├── Module 1
+    ├── Module (Chương / Chủ đề / Unit — tùy môn)
     │   ├── Bài 1, 2, ... (nội dung markdown)
-    │   └── Bài kiểm tra (5 câu trắc nghiệm)
-    ├── Module 2 ...
-    └── Module 5
+    │   └── Bài kiểm tra cuối module (câu hỏi trắc nghiệm, 4 lựa chọn/câu)
+    └── ... (số module/bài khác nhau tùy môn và khối lớp)
 
-  Tổng mỗi khóa: 5 module · 12 bài học · 5 câu/quiz · 4 lựa chọn/câu
+  Ví dụ: Lớp 10/12 và Ôn thi ĐH — mỗi khóa 5 module · 12 bài · 5 câu/quiz
+         Toán 11 — 9 module · 33 bài · 180 câu hỏi
+         Vật lí 11 — 4 module · 26 bài · 80 câu hỏi
+         Hóa học 11 — 6 module · 19 bài · 120 câu hỏi
+         Lịch sử 11 — 6 module · 13 bài · 120 câu hỏi
+         Tiếng Anh 11 — 10 module (Unit) · 30 bài · 200 câu hỏi
 
   Slug các khóa học (dùng sau /course/):
-    Lớp 10: tieng-anh · toan · vat-ly · hoa-hoc
-    Lớp 11: tieng-anh-11 · toan-11 · vat-ly-11 · hoa-hoc-11
-    Lớp 12: tieng-anh-12 · toan-12 · vat-ly-12 · hoa-hoc-12
+    Lớp 10 : tieng-anh · toan · vat-ly · hoa-hoc
+    Lớp 11 : tieng-anh-11 · toan-11 · vat-ly-11 · hoa-hoc-11 · lich-su-11
+    Lớp 12 : tieng-anh-12 · toan-12 · vat-ly-12 · hoa-hoc-12
     Ôn thi : on-thi-dh-tieng-anh · on-thi-dh-toan
              on-thi-dh-vat-ly · on-thi-dh-hoa-hoc
 
@@ -203,49 +203,52 @@ CẤU HÌNH MÔI TRƯỜNG (.env)
 ────────────────────────────
   File: elearning-app/.env
 
-  DATABASE_URL              → Đường dẫn database SQLite
+  DATABASE_URL              → Chuỗi kết nối PostgreSQL
   JWT_SECRET                → Khóa bí mật JWT
   OPENAI_API_KEY            → API Key OpenAI (chatbot AI)
   NEXT_PUBLIC_RECAPTCHA_SITE_KEY → Site key Google reCAPTCHA v2
   RECAPTCHA_SECRET_KEY      → Secret key Google reCAPTCHA v2
 
+  Lưu ý: bản online (Railway) dùng PostgreSQL riêng, không dùng chung
+  với máy local — sửa code xong cần đẩy lên GitHub để Railway tự
+  build lại (không cần thao tác thủ công trên server).
+
 
 LỆNH THƯỜNG DÙNG
 ─────────────────
-  Khởi động nhanh:
+  Khởi động nhanh (local):
     Double-click KHOI_DONG.bat
 
-  Chế độ phát triển (khi sửa code):
+  Chế độ phát triển (khi sửa code, local):
     npm run dev
 
   Build production (sau khi sửa code xong):
     npm run build
 
-  Tạo dữ liệu:
-    npm run db:seed    → Khóa học + tài khoản gốc
-    npm run db:demo    → Dữ liệu hoạt động mẫu
+  Tạo dữ liệu (cần DATABASE_URL trỏ đúng Postgres):
+    npm run db:seed    → Khóa học + 3 tài khoản gốc
+    npm run db:verify  → Kiểm tra toàn bộ dữ liệu (khóa học, người dùng) có thiếu/lỗi không
 
   Reset database:
     npx prisma db push --accept-data-loss
     npx prisma db seed
-    npm run db:demo
 
   Xem database trực quan:
     npx prisma studio  →  http://localhost:5555
 
-  Đóng gói để chia sẻ:
+  Đóng gói để chia sẻ (local):
     Double-click DONG_GOI.bat  →  TramOnThi-FullPackage.zip
 
 
 CÁC FILE QUAN TRỌNG
 ────────────────────
-  KHOI_DONG_NGAM.vbs   → Khởi động ẩn (dành cho người dùng cuối)
-  KHOI_DONG.bat        → Khởi động có terminal (dành cho lập trình viên)
+  KHOI_DONG_NGAM.vbs   → Khởi động ẩn (dành cho người dùng cuối, local)
+  KHOI_DONG.bat        → Khởi động có terminal (dành cho lập trình viên, local)
   DONG_GOI.bat         → Đóng gói ZIP để chia sẻ
-  prisma/dev.db        → Database SQLite
-  prisma/seed.ts       → Script tạo khóa học + tài khoản gốc
-  prisma/seed-demo.ts  → Script tạo dữ liệu hoạt động mẫu
-  runtime/             → Node.js portable (không cần cài đặt)
+  prisma/schema.prisma → Cấu trúc database (PostgreSQL)
+  prisma/seed.ts       → Script tạo khóa học + 3 tài khoản gốc
+  prisma/verify.ts     → Script kiểm tra tính toàn vẹn dữ liệu
+  runtime/             → Node.js portable (không cần cài đặt, dùng khi chạy local)
   public/hoc-bai.jpg   → Ảnh nền trang đăng nhập / đăng ký
 
 
@@ -254,11 +257,11 @@ THÔNG TIN DỰ ÁN
   Tên ứng dụng : TramOnThi
   Framework    : Next.js 16 (App Router)
   Ngôn ngữ    : TypeScript
-  Database     : SQLite (Prisma ORM)
+  Database     : PostgreSQL (Prisma ORM), lưu trữ trên Railway
+  Hosting      : Railway (https://tramonthi-production.up.railway.app)
   Giao diện    : Tailwind CSS v4 + Phosphor Icons
   AI           : OpenAI GPT-4o Mini
   Bảo mật      : JWT · bcrypt · reCAPTCHA v2
-  Node.js      : v20.18.3 (portable, có sẵn trong runtime\)
 
 
 HỖ TRỢ KỸ THUẬT

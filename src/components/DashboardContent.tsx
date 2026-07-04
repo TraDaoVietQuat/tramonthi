@@ -111,7 +111,7 @@ export default function DashboardContent({
       )}
 
       {/* Grade Tabs */}
-      <div className="mb-6 flex gap-2 rounded-2xl border border-gray-200 bg-white p-2 shadow-sm">
+      <div className="mb-6 flex gap-1 rounded-2xl border border-gray-200 bg-white p-2 shadow-sm sm:gap-2">
         {GRADES.map((g) => {
           const count = courses.filter((c) => c.grade === g.key);
           const done = count.reduce((s, c) => s + c.completedCount, 0);
@@ -123,11 +123,11 @@ export default function DashboardContent({
               key={g.key}
               type="button"
               onClick={() => handleSelectGrade(g.key)}
-              className={`flex flex-1 flex-col items-center rounded-xl px-3 py-3 transition ${
+              className={`flex flex-1 flex-col items-center rounded-xl px-1.5 py-2 transition sm:px-3 sm:py-3 ${
                 active ? "bg-emerald-500 text-white shadow" : "text-gray-500 hover:bg-gray-50"
               }`}
             >
-              <span className={`text-sm font-semibold ${active ? "text-white" : "text-gray-700"}`}>{g.label}</span>
+              <span className={`text-center text-xs font-semibold sm:text-sm ${active ? "text-white" : "text-gray-700"}`}>{g.label}</span>
               <span className={`mt-0.5 text-xs ${active ? "text-emerald-100" : "text-gray-400"}`}>{gpct}%</span>
             </button>
           );
@@ -146,7 +146,7 @@ export default function DashboardContent({
         /* Subject grid */
         <div>
           <p className="mb-4 text-sm font-medium text-gray-500">Chọn môn học – {gradeLabel}</p>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {gradeCourses.map((course) => {
               const meta = SUBJECT_META[course.subject] ?? { label: course.subject, color: "text-gray-600", bg: "bg-gray-50", border: "border-gray-200", icon: "📚" };
               const cpct = course.lessonIds.length

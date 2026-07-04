@@ -130,29 +130,29 @@ export default function LessonPage() {
         </article>
 
         {/* Action bar */}
-        <div className="mt-5 flex items-center justify-between gap-4 rounded-2xl border border-gray-200 bg-white px-6 py-4 shadow-sm">
+        <div className="mt-5 flex flex-col items-stretch gap-3 rounded-2xl border border-gray-200 bg-white px-6 py-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           {!completed ? (
             <button
               type="button"
               onClick={markComplete}
               disabled={loading}
-              className="flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-600 disabled:opacity-60"
+              className="flex items-center justify-center gap-2 rounded-lg bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-600 disabled:opacity-60 sm:justify-start"
             >
               <CheckCircle size={16} />
               {loading ? "Đang lưu..." : "Đánh dấu hoàn thành"}
             </button>
           ) : (
-            <div className="flex items-center gap-2 text-sm font-medium text-emerald-600">
+            <div className="flex items-center justify-center gap-2 text-sm font-medium text-emerald-600 sm:justify-start">
               <CheckCircle size={16} weight="fill" />
               Đã hoàn thành
             </div>
           )}
 
-          <div className="flex gap-2">
+          <div className="flex flex-col gap-2 sm:flex-row">
             {nextLesson && (
               <Link
                 href={`/course/${slug}/lesson/${nextLesson.id}`}
-                className="flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+                className="flex items-center justify-center gap-1.5 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
               >
                 Bài tiếp
                 <ArrowRight size={14} />
@@ -161,7 +161,7 @@ export default function LessonPage() {
             {!nextLesson && quiz && (
               <Link
                 href={`/course/${slug}/quiz/${quiz.id}`}
-                className="flex items-center gap-1.5 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-emerald-600"
+                className="flex items-center justify-center gap-1.5 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-emerald-600"
               >
                 <ClipboardText size={15} />
                 Làm quiz

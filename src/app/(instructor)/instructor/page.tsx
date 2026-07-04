@@ -226,32 +226,34 @@ function DashboardTab({ stats }: { stats: Stats }) {
           <div className="border-b border-gray-100 px-6 py-4">
             <h3 className="font-semibold text-gray-900">Quiz gần đây</h3>
           </div>
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gray-100 bg-gray-50 text-xs text-gray-400">
-                <th className="px-5 py-3 text-left font-medium">Học sinh</th>
-                <th className="px-5 py-3 text-left font-medium">Quiz</th>
-                <th className="px-5 py-3 text-left font-medium">Điểm</th>
-                <th className="px-5 py-3 text-left font-medium">Thời gian</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-50">
-              {stats.recentAttempts.map((a) => (
-                <tr key={a.id} className="hover:bg-gray-50">
-                  <td className="px-5 py-3 font-medium text-gray-900">{a.user.name}</td>
-                  <td className="px-5 py-3 text-gray-500">{a.quiz.title}</td>
-                  <td className="px-5 py-3">
-                    <span className={`font-semibold ${a.score >= 80 ? "text-emerald-600" : a.score >= 60 ? "text-amber-600" : "text-red-500"}`}>
-                      {a.score.toFixed(0)}%
-                    </span>
-                  </td>
-                  <td className="px-5 py-3 text-xs text-gray-400">
-                    {new Date(a.startedAt).toLocaleDateString("vi-VN")}
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-120 text-sm">
+              <thead>
+                <tr className="border-b border-gray-100 bg-gray-50 text-xs text-gray-400">
+                  <th className="px-5 py-3 text-left font-medium">Học sinh</th>
+                  <th className="px-5 py-3 text-left font-medium">Quiz</th>
+                  <th className="px-5 py-3 text-left font-medium">Điểm</th>
+                  <th className="px-5 py-3 text-left font-medium">Thời gian</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-gray-50">
+                {stats.recentAttempts.map((a) => (
+                  <tr key={a.id} className="hover:bg-gray-50">
+                    <td className="px-5 py-3 font-medium text-gray-900">{a.user.name}</td>
+                    <td className="px-5 py-3 text-gray-500">{a.quiz.title}</td>
+                    <td className="px-5 py-3">
+                      <span className={`font-semibold ${a.score >= 80 ? "text-emerald-600" : a.score >= 60 ? "text-amber-600" : "text-red-500"}`}>
+                        {a.score.toFixed(0)}%
+                      </span>
+                    </td>
+                    <td className="px-5 py-3 text-xs text-gray-400">
+                      {new Date(a.startedAt).toLocaleDateString("vi-VN")}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>
@@ -493,7 +495,7 @@ function ManageTab() {
                                         <button type="button" aria-label="Xóa câu hỏi" onClick={() => deleteQuestion(q.id)}
                                           className="shrink-0 rounded p-1 text-gray-300 hover:text-red-500 hover:bg-red-50"><Trash size={12}/></button>
                                       </div>
-                                      <div className="mt-1.5 grid grid-cols-2 gap-1">
+                                      <div className="mt-1.5 grid grid-cols-1 gap-1 sm:grid-cols-2">
                                         {opts.map((o, oi) => (
                                           <span key={oi} className={`text-xs px-2 py-0.5 rounded ${String(oi)===q.answer ? "bg-emerald-100 text-emerald-700 font-semibold" : "text-gray-500"}`}>
                                             {String.fromCharCode(65+oi)}. {o}

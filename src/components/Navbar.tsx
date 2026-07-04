@@ -74,7 +74,8 @@ export default function Navbar() {
               {/* Mobile menu button */}
               <button
                 onClick={() => setMenuOpen((o) => !o)}
-                className="rounded-lg p-1.5 text-gray-600 hover:bg-gray-100 md:hidden"
+                className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 md:hidden"
+                aria-label="Mở menu"
               >
                 {menuOpen ? <X size={18} /> : <List size={18} />}
               </button>

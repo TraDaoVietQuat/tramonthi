@@ -93,9 +93,17 @@ export default function Chatbot() {
 
       {/* Chat window */}
       {open && (
-        <div className="fixed bottom-24 right-6 z-50 flex h-[520px] w-[360px] flex-col rounded-2xl border border-gray-200 bg-white shadow-2xl">
+        <div className="fixed inset-0 z-50 flex flex-col bg-white shadow-2xl sm:inset-auto sm:bottom-24 sm:right-6 sm:h-130 sm:w-90 sm:rounded-2xl sm:border sm:border-gray-200">
           {/* Header */}
-          <div className="flex items-center gap-3 rounded-t-2xl bg-emerald-500 px-4 py-3 text-white">
+          <div className="flex items-center gap-3 bg-emerald-500 px-4 py-3 text-white sm:rounded-t-2xl">
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-white/90 hover:bg-white/10 sm:hidden"
+              aria-label="Đóng chatbot"
+            >
+              <X size={20} weight="bold" />
+            </button>
             <Robot size={24} weight="fill" />
             <div>
               <p className="text-sm font-semibold">Trợ lý AI TramOnThi</p>
@@ -150,7 +158,7 @@ export default function Chatbot() {
                 type="button"
                 onClick={sendMessage}
                 disabled={!input.trim() || loading}
-                className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-500 text-white transition hover:bg-emerald-600 disabled:opacity-40"
+                className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-500 text-white transition hover:bg-emerald-600 disabled:opacity-40"
                 aria-label="Gửi tin nhắn"
               >
                 <PaperPlaneRight size={16} weight="fill" />

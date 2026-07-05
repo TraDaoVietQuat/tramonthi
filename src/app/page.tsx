@@ -5,6 +5,7 @@ import {
   ArrowRight, Play, Star, CheckCircle, Sparkle, Trophy, TrendUp,
   Lightning, BookOpen, Users, Shield, GraduationCap, List, X,
 } from "@phosphor-icons/react";
+import Reveal from "@/components/Reveal";
 
 const STATS = [
   { value: "50,000+", label: "Học sinh đang học" },
@@ -297,10 +298,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {STATS.map((stat, i) => (
-              <div key={i} className="text-center py-2">
+              <Reveal key={i} direction="up" delay={i * 80} className="text-center py-2">
                 <p className="text-3xl font-black text-white">{stat.value}</p>
                 <p className="text-sm text-white/80 mt-0.5">{stat.label}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -310,15 +311,15 @@ export default function Home() {
       <section id="tinh-nang" className="py-24 bg-gray-50 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.04)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <Reveal direction="up" className="text-center mb-16">
             <p className="text-emerald-600 text-sm font-semibold tracking-widest uppercase mb-3">Tại sao chọn chúng tôi</p>
             <h2 className="text-4xl lg:text-5xl font-black text-gray-900">
               Tất cả những gì bạn cần để{" "}
               <span className="text-gradient">thành công</span>
             </h2>
-          </div>
+          </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <div className="lg:col-span-2 card-glow rounded-2xl overflow-hidden">
+            <Reveal direction="left" className="lg:col-span-2 card-glow rounded-2xl overflow-hidden">
               <div className="bg-white rounded-2xl p-7 h-full border border-gray-100 shadow-sm">
                 <div className="flex items-start justify-between mb-6">
                   <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center border border-emerald-100">
@@ -334,8 +335,8 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-            </div>
-            <div className="card-glow rounded-2xl overflow-hidden">
+            </Reveal>
+            <Reveal direction="right" delay={100} className="card-glow rounded-2xl overflow-hidden">
               <div className="bg-white rounded-2xl p-7 h-full border border-gray-100 shadow-sm">
                 <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center border border-blue-100 mb-6">
                   <Lightning weight="fill" className="w-7 h-7 text-blue-500" />
@@ -343,8 +344,8 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">AI Kiểm tra hiểu bài</h3>
                 <p className="text-gray-500 leading-relaxed">Sau mỗi bài học, AI tự động tạo câu hỏi kiểm tra, giải thích đáp án sai ngay lập tức.</p>
               </div>
-            </div>
-            <div className="card-glow rounded-2xl overflow-hidden">
+            </Reveal>
+            <Reveal direction="left" delay={100} className="card-glow rounded-2xl overflow-hidden">
               <div className="bg-white rounded-2xl p-7 h-full border border-gray-100 shadow-sm">
                 <div className="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center border border-amber-100 mb-6">
                   <Shield weight="fill" className="w-7 h-7 text-amber-500" />
@@ -352,8 +353,8 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Quiz bám đề thi thật</h3>
                 <p className="text-gray-500 leading-relaxed">400+ câu hỏi theo đúng dạng THPT Quốc gia, phân tích điểm yếu để ôn đúng chỗ.</p>
               </div>
-            </div>
-            <div className="lg:col-span-2 card-glow rounded-2xl overflow-hidden">
+            </Reveal>
+            <Reveal direction="right" className="lg:col-span-2 card-glow rounded-2xl overflow-hidden">
               <div className="bg-white rounded-2xl p-7 h-full border border-gray-100 shadow-sm">
                 <div className="flex items-start justify-between mb-6">
                   <div className="w-14 h-14 bg-cyan-50 rounded-2xl flex items-center justify-center border border-cyan-100">
@@ -372,7 +373,7 @@ export default function Home() {
                   <span className="text-sm text-gray-500">GPT-4o-mini · Sẵn sàng mọi lúc</span>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -380,13 +381,13 @@ export default function Home() {
       {/* ── COURSES BY GRADE ── */}
       <section id="khoa-hoc" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <Reveal direction="up" className="text-center mb-14">
             <p className="text-emerald-600 text-sm font-semibold tracking-widest uppercase mb-3">Khóa học</p>
             <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4">
               Chọn lớp, bắt đầu <span className="text-gradient">ngay hôm nay</span>
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto">Chương trình học bám sát SGK Kết nối tri thức 2022, đúng chuẩn THPT hiện hành.</p>
-          </div>
+          </Reveal>
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             {GRADES.map((g) => (
               <button
@@ -402,23 +403,24 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {SUBJECTS[activeGrade].map((subject, idx) => (
-              <Link
-                key={idx}
-                href="/register"
-                className="card-glow group bg-white rounded-2xl p-5 text-left border border-gray-100 shadow-sm hover:-translate-y-2 transition-all duration-300 block"
-              >
-                <div className={`${subject.bgClass} w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4 transition-transform duration-300 group-hover:scale-110`}>
-                  {subject.icon}
-                </div>
-                <h3 className="font-bold text-gray-900 mb-1">{subject.name}</h3>
-                <p className="text-sm text-gray-400">{subject.modules} chương · {subject.lessons} bài</p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="text-xs font-semibold text-emerald-600">Miễn phí</span>
-                  <div className="w-7 h-7 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-500 transition-colors duration-300">
-                    <ArrowRight className="w-3.5 h-3.5 text-emerald-500 group-hover:text-white transition-colors" />
+              <Reveal key={idx} direction="up" delay={idx * 90}>
+                <Link
+                  href="/register"
+                  className="card-glow group bg-white rounded-2xl p-5 text-left border border-gray-100 shadow-sm hover:-translate-y-2 transition-all duration-300 block"
+                >
+                  <div className={`${subject.bgClass} w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4 transition-transform duration-300 group-hover:scale-110`}>
+                    {subject.icon}
                   </div>
-                </div>
-              </Link>
+                  <h3 className="font-bold text-gray-900 mb-1">{subject.name}</h3>
+                  <p className="text-sm text-gray-400">{subject.modules} chương · {subject.lessons} bài</p>
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="text-xs font-semibold text-emerald-600">Miễn phí</span>
+                    <div className="w-7 h-7 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center group-hover:bg-emerald-500 transition-colors duration-300">
+                      <ArrowRight className="w-3.5 h-3.5 text-emerald-500 group-hover:text-white transition-colors" />
+                    </div>
+                  </div>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -428,15 +430,20 @@ export default function Home() {
       <section className="py-24 bg-gray-50 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-emerald-100 rounded-full blur-[100px] opacity-40 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-14">
+          <Reveal direction="up" className="text-center mb-14">
             <p className="text-emerald-600 text-sm font-semibold tracking-widest uppercase mb-3">Phản hồi</p>
             <h2 className="text-4xl lg:text-5xl font-black text-gray-900">
               Học sinh nói gì về <span className="text-gradient">chúng tôi?</span>
             </h2>
-          </div>
+          </Reveal>
           <div className="grid md:grid-cols-3 gap-6">
             {TESTIMONIALS.map((t, i) => (
-              <div key={i} className={`card-glow rounded-2xl overflow-hidden ${i === 1 ? "md:-mt-4" : ""}`}>
+              <Reveal
+                key={i}
+                direction={i === 0 ? "left" : i === 2 ? "right" : "up"}
+                delay={i * 120}
+                className={`card-glow rounded-2xl overflow-hidden ${i === 1 ? "md:-mt-4" : ""}`}
+              >
                 <div className="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm h-full flex flex-col">
                   <div className="flex items-center gap-1 mb-5">
                     {[1,2,3,4,5].map((s) => <Star key={s} weight="fill" className="w-4 h-4 text-amber-400" />)}
@@ -456,7 +463,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -465,7 +472,7 @@ export default function Home() {
       {/* ── CTA ── */}
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="border-animated-slow border-animated-lg">
+          <Reveal direction="scale" className="border-animated-slow border-animated-lg">
             <div className="border-inner-lg bg-gradient-to-br from-emerald-50 via-white to-cyan-50 rounded-[calc(1.5rem-1px)] px-8 py-16 text-center relative overflow-hidden shadow-xl shadow-emerald-500/8">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(16,185,129,0.08),transparent_60%)]"></div>
               <div className="relative">
@@ -492,7 +499,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 

@@ -139,6 +139,22 @@ body {
 .border-inner-lg { border-radius: calc(1.5rem - 1px); }
 .border-inner-md { border-radius: calc(1rem - 1px); }
 
+/* ─── Scroll reveal (slide/fade in on scroll) ───────────────────── */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.25,1,0.5,1), transform 0.7s cubic-bezier(0.25,1,0.5,1);
+  will-change: opacity, transform;
+}
+.reveal-up    { transform: translateY(44px); }
+.reveal-left  { transform: translateX(-56px); }
+.reveal-right { transform: translateX(56px); }
+.reveal-scale { transform: scale(0.92); }
+.reveal.is-visible { opacity: 1; transform: translate(0, 0) scale(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; opacity: 1; transform: none; }
+}
+
 /* ─── Scrollbar ─────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }

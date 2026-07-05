@@ -220,12 +220,13 @@ export default function Home() {
                       <span className="text-xs text-gray-400 font-mono">TramOnThi — Lớp học</span>
                     </div>
                     <div className="aspect-video rounded-xl overflow-hidden mb-5 border border-emerald-100 bg-black">
-                      <iframe
-                        src="https://www.youtube.com/embed/pf1XfNZHvyY?rel=0&modestbranding=1"
+                      <video
+                        src="/videos/hoa-hoc-10-demo.mp4"
                         title="Hóa học 10 — Cấu tạo nguyên tử"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="w-full h-full"
+                        className="w-full h-full object-cover"
+                        controls
+                        playsInline
+                        preload="metadata"
                       />
                     </div>
                     <div className="space-y-3">

@@ -156,17 +156,21 @@ export default function Home() {
 
       {/* ── HERO (fullscreen video background) ── */}
       <section className="relative h-screen w-full overflow-hidden bg-black">
-        <video
-          src="/videos/hoa-hoc-10-demo.mp4"
-          aria-label="Video giới thiệu TramOnThi"
-          className="absolute inset-0 h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        />
-        <div className="absolute inset-0 bg-black/55"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
+        {/* Video ở đúng độ phân giải gốc (496×864) để không bị vỡ nét khi phóng to */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden items-center pr-6 lg:flex lg:pr-12 xl:pr-20">
+          <video
+            src="/videos/hoa-hoc-10-demo.mp4"
+            aria-label="Video giới thiệu TramOnThi"
+            className="h-auto max-h-[864px] w-auto max-w-[496px] rounded-3xl shadow-2xl shadow-black/50"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent lg:to-black/10"></div>
 
         <div className="relative z-10 flex h-full flex-col justify-between px-6 pb-10 pt-28 sm:pb-12 sm:pt-32 md:px-12 md:pb-16 md:pt-36 lg:px-16">
           <div className="max-w-3xl">

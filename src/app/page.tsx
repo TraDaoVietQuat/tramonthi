@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
-  ArrowRight, Play, Star, CheckCircle, Sparkle, Trophy, TrendUp,
+  ArrowRight, Play, Star, Sparkle, Trophy, TrendUp,
   Lightning, BookOpen, Users, Shield, GraduationCap, List, X,
 } from "@phosphor-icons/react";
 import Reveal from "@/components/Reveal";
@@ -167,7 +167,55 @@ export default function Home() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left */}
+            {/* Left — video panel */}
+            <div className="relative hidden lg:block">
+              <div className="relative z-10 aspect-4/5 rounded-3xl overflow-hidden shadow-2xl shadow-emerald-500/15 bg-black">
+                <video
+                  src="/videos/hoa-hoc-10-demo.mp4"
+                  aria-label="Video giới thiệu TramOnThi"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-black/10 pointer-events-none"></div>
+              </div>
+              {/* Floating badges */}
+              <div className="absolute -top-6 -right-6 animate-float z-20">
+                <div className="border-animated">
+                  <div className="border-inner-md bg-white rounded-[calc(1rem-1px)] p-3.5 shadow-lg">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center border border-amber-100">
+                        <Trophy weight="fill" className="w-5 h-5 text-amber-500" />
+                      </div>
+                      <div>
+                        <p className="text-[11px] text-gray-400">Thành tích tuần</p>
+                        <p className="text-sm font-bold text-gray-900">Top 3 lớp</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -bottom-6 -left-6 animate-float-delayed z-20">
+                <div className="border-animated">
+                  <div className="border-inner-md bg-white rounded-[calc(1rem-1px)] p-3.5 shadow-lg">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center border border-emerald-100">
+                        <TrendUp weight="bold" className="w-5 h-5 text-emerald-500" />
+                      </div>
+                      <div>
+                        <p className="text-[11px] text-gray-400">Điểm cải thiện</p>
+                        <p className="text-sm font-bold text-gray-900">+2.5 điểm</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right — content */}
             <div className="space-y-8">
               <div className="animate-fade-up">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-200 bg-emerald-50 text-emerald-600 text-sm font-medium">
@@ -212,91 +260,6 @@ export default function Home() {
                     <span className="ml-2 text-sm font-semibold text-gray-800">4.9</span>
                   </div>
                   <p className="text-sm text-gray-400 mt-0.5">50,000+ học sinh tin tưởng</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right — mock classroom card */}
-            <div className="relative hidden lg:block">
-              <div className="relative z-10">
-                <div className="border-animated-slow border-animated-lg">
-                  <div className="border-inner-lg bg-white rounded-[calc(1.5rem-1px)] p-6 shadow-2xl shadow-emerald-500/10">
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                        <div className="w-3 h-3 rounded-full bg-amber-400"></div>
-                        <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
-                      </div>
-                      <span className="text-xs text-gray-400 font-mono">TramOnThi — Lớp học</span>
-                    </div>
-                    <div className="aspect-video rounded-xl overflow-hidden mb-5 border border-emerald-100 bg-black">
-                      <video
-                        src="/videos/hoa-hoc-10-demo.mp4"
-                        title="Hóa học 10 — Cấu tạo nguyên tử"
-                        className="w-full h-full object-cover"
-                        controls
-                        playsInline
-                        preload="metadata"
-                      />
-                    </div>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="font-semibold text-gray-900">Cấu tạo nguyên tử</p>
-                          <p className="text-xs text-gray-400 mt-0.5">Chương 1 · 4/12 bài</p>
-                        </div>
-                        <span className="text-xs px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 font-medium">65%</span>
-                      </div>
-                      <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                        <div className="h-full w-[65%] bg-linear-to-r from-emerald-500 to-cyan-400 rounded-full progress-bar"></div>
-                      </div>
-                      {[
-                        { title: "Bài 1: Cấu tạo nguyên tử", done: true,  active: false },
-                        { title: "Bài 2: Hạt nhân nguyên tử", done: true,  active: false },
-                        { title: "Bài 3: Lớp electron",       done: false, active: true  },
-                      ].map((l, i) => (
-                        <div key={i} className={`flex items-center gap-3 p-2.5 rounded-lg ${l.active ? "bg-emerald-50 border border-emerald-100" : ""}`}>
-                          <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${l.done ? "bg-emerald-500" : l.active ? "border-2 border-emerald-500" : "border-2 border-gray-200"}`}>
-                            {l.done  && <CheckCircle weight="fill" className="w-3.5 h-3.5 text-white" />}
-                            {l.active && <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>}
-                          </div>
-                          <span className={`text-sm ${l.active ? "text-gray-900 font-medium" : l.done ? "text-gray-400 line-through" : "text-gray-500"}`}>{l.title}</span>
-                          {l.active && <span className="ml-auto text-xs text-emerald-600">Đang học</span>}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Floating badges */}
-              <div className="absolute -top-[5rem] right-4 animate-float z-20">
-                <div className="border-animated">
-                  <div className="border-inner-md bg-white rounded-[calc(1rem-1px)] p-3.5 shadow-lg">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center border border-amber-100">
-                        <Trophy weight="fill" className="w-5 h-5 text-amber-500" />
-                      </div>
-                      <div>
-                        <p className="text-[11px] text-gray-400">Thành tích tuần</p>
-                        <p className="text-sm font-bold text-gray-900">Top 3 lớp</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute -bottom-20 left-4 animate-float-delayed z-20">
-                <div className="border-animated">
-                  <div className="border-inner-md bg-white rounded-[calc(1rem-1px)] p-3.5 shadow-lg">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center border border-emerald-100">
-                        <TrendUp weight="bold" className="w-5 h-5 text-emerald-500" />
-                      </div>
-                      <div>
-                        <p className="text-[11px] text-gray-400">Điểm cải thiện</p>
-                        <p className="text-sm font-bold text-gray-900">+2.5 điểm</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

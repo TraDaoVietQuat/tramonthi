@@ -119,6 +119,15 @@ body {
 .animate-fade-up-3 { animation: fade-up 0.5s 0.3s ease-out both; }
 .animate-fade-up-4 { animation: fade-up 0.5s 0.4s ease-out both; }
 
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-hero-badge   { animation: fadeSlideUp 0.8s ease 0.2s both; }
+.animate-hero-heading { animation: fadeSlideUp 0.8s ease 0.4s both; }
+.animate-hero-desc    { animation: fadeSlideUp 0.8s ease 0.7s both; }
+.animate-hero-cta     { animation: fadeSlideUp 0.8s ease 0.9s both; }
+
 /* ─── Progress bar animation ────────────────────────────────────── */
 @keyframes progress-fill { from { width: 0%; } }
 .progress-bar { animation: progress-fill 1.2s cubic-bezier(0.25,1,0.5,1) both; }

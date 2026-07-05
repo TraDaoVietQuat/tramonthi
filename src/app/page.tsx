@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
-  ArrowRight, Play, Star, Sparkle, Trophy, TrendUp,
+  ArrowRight, Play, Star, Sparkle,
   Lightning, BookOpen, Users, Shield, GraduationCap, List, X,
 } from "@phosphor-icons/react";
 import Reveal from "@/components/Reveal";
@@ -48,8 +48,6 @@ const SUBJECTS: Record<string, { icon: string; name: string; bgClass: string; mo
   ],
 };
 
-const AVATAR_INITIALS = ["A", "B", "C", "D"] as const;
-const AVATAR_CLASSES = ["bg-emerald-500", "bg-cyan-500", "bg-blue-500", "bg-violet-500"] as const;
 const STAT_DOT_CLASSES = ["bg-emerald-500", "bg-cyan-500", "bg-blue-500", "bg-violet-500", "bg-pink-500"] as const;
 
 const TESTIMONIALS = [
@@ -156,113 +154,46 @@ export default function Home() {
         )}
       </header>
 
-      {/* ── HERO ── */}
-      <section className="relative min-h-[92vh] flex items-center bg-white pt-28">
-        {/* Blobs trong overflow-hidden riêng để không cắt badge nổi */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-emerald-100 blur-[120px] opacity-60"></div>
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-cyan-100 blur-[120px] opacity-60"></div>
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.04)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
-        </div>
+      {/* ── HERO (fullscreen video background) ── */}
+      <section className="relative h-screen w-full overflow-hidden bg-black">
+        <video
+          src="/videos/hoa-hoc-10-demo.mp4"
+          aria-label="Video giới thiệu TramOnThi"
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        />
+        <div className="absolute inset-0 bg-black/55"></div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left — video panel */}
-            <div className="relative hidden lg:block">
-              <div className="relative z-10 aspect-4/5 rounded-3xl overflow-hidden shadow-2xl shadow-emerald-500/15 bg-black">
-                <video
-                  src="/videos/hoa-hoc-10-demo.mp4"
-                  aria-label="Video giới thiệu TramOnThi"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-black/10 pointer-events-none"></div>
-              </div>
-              {/* Floating badges */}
-              <div className="absolute -top-6 -right-6 animate-float z-20">
-                <div className="border-animated">
-                  <div className="border-inner-md bg-white rounded-[calc(1rem-1px)] p-3.5 shadow-lg">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center border border-amber-100">
-                        <Trophy weight="fill" className="w-5 h-5 text-amber-500" />
-                      </div>
-                      <div>
-                        <p className="text-[11px] text-gray-400">Thành tích tuần</p>
-                        <p className="text-sm font-bold text-gray-900">Top 3 lớp</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute -bottom-6 -left-6 animate-float-delayed z-20">
-                <div className="border-animated">
-                  <div className="border-inner-md bg-white rounded-[calc(1rem-1px)] p-3.5 shadow-lg">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center border border-emerald-100">
-                        <TrendUp weight="bold" className="w-5 h-5 text-emerald-500" />
-                      </div>
-                      <div>
-                        <p className="text-[11px] text-gray-400">Điểm cải thiện</p>
-                        <p className="text-sm font-bold text-gray-900">+2.5 điểm</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <div className="relative z-10 flex h-full flex-col justify-between px-6 pb-10 pt-28 sm:pb-12 sm:pt-32 md:px-12 md:pb-16 md:pt-36 lg:px-16">
+          <div className="max-w-3xl">
+            <div className="animate-hero-badge inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs text-white/90 backdrop-blur-sm sm:text-sm">
+              <Sparkle weight="fill" className="w-4 h-4 text-emerald-300" />
+              Nền tảng học trực tuyến #1 Việt Nam
             </div>
+          </div>
 
-            {/* Right — content */}
-            <div className="space-y-8">
-              <div className="animate-fade-up">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-200 bg-emerald-50 text-emerald-600 text-sm font-medium">
-                  <Sparkle weight="fill" className="w-4 h-4" />
-                  Nền tảng học trực tuyến #1 Việt Nam
-                </div>
-              </div>
-              <div className="animate-fade-up-1">
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.08] tracking-tight text-gray-900">
-                  Học mọi lúc<br />
-                  <span className="shimmer-text">mọi nơi</span><br />
-                  <span className="text-gray-800">thi đỗ</span>{" "}
-                  <span className="text-gradient">mọi trường</span>
-                </h1>
-              </div>
-              <p className="text-lg text-gray-500 leading-relaxed max-w-xl animate-fade-up-2">
-                Khóa học trực tuyến chất lượng cao từ lớp 10 đến ôn thi Đại học. Bài giảng chi tiết, bài tập tương tác và AI kiểm tra hiểu bài bám sát chương trình mới 2025.
-              </p>
-              <div className="flex flex-wrap gap-4 animate-fade-up-3">
-                <Link href="/register" className="glow-btn inline-flex items-center gap-2.5 bg-linear-to-r from-emerald-500 to-cyan-500 text-white px-8 py-4 rounded-2xl font-bold text-base shadow-xl shadow-emerald-500/20 hover:shadow-emerald-500/35 hover:scale-105 transition-all duration-300">
-                  Bắt đầu miễn phí
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <a href="#khoa-hoc" className="inline-flex items-center gap-2.5 bg-gray-50 border border-gray-200 text-gray-700 px-8 py-4 rounded-2xl font-semibold text-base hover:bg-gray-100 transition-all duration-300">
-                  <div className="w-9 h-9 bg-emerald-100 rounded-xl flex items-center justify-center">
-                    <Play weight="fill" className="w-4 h-4 ml-0.5 text-emerald-600" />
-                  </div>
-                  Xem khóa học
-                </a>
-              </div>
-              <div className="flex items-center gap-6 animate-fade-up-4">
-                <div className="flex -space-x-2.5">
-                  {AVATAR_INITIALS.map((initial, i) => (
-                    <div key={i} className={`${AVATAR_CLASSES[i]} w-10 h-10 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-bold shadow-sm`}>
-                      {initial}
-                    </div>
-                  ))}
-                </div>
-                <div>
-                  <div className="flex items-center gap-0.5">
-                    {[1,2,3,4,5].map((s) => <Star key={s} weight="fill" className="w-4 h-4 text-amber-400" />)}
-                    <span className="ml-2 text-sm font-semibold text-gray-800">4.9</span>
-                  </div>
-                  <p className="text-sm text-gray-400 mt-0.5">50,000+ học sinh tin tưởng</p>
-                </div>
-              </div>
+          <div>
+            <div className="max-w-3xl">
+              <h1 className="animate-hero-heading text-3xl font-medium leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+                Học mọi lúc<br />
+                <span className="shimmer-text">mọi nơi</span><br />
+                thi đỗ <span className="text-gradient">mọi trường</span>
+              </h1>
             </div>
+            <p className="animate-hero-desc mb-5 max-w-sm text-sm leading-relaxed text-white/60 sm:mb-6 sm:max-w-lg sm:text-base md:text-lg">
+              Khóa học trực tuyến chất lượng cao từ lớp 10 đến ôn thi Đại học. Bài giảng chi tiết, bài tập tương tác và AI kiểm tra hiểu bài bám sát chương trình mới 2025.
+            </p>
+            <Link
+              href="/register"
+              className="animate-hero-cta inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-black transition-transform hover:scale-105 sm:px-6 sm:py-3"
+            >
+              Bắt đầu miễn phí
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>

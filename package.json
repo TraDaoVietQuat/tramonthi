@@ -9,14 +9,14 @@
     "lint": "eslint",
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
-    "db:seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
-    "db:demo": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed-demo.ts",
-    "db:verify": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/verify.ts",
-    "db:seed-math9": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed-math9.ts"
+    "db:seed": "ts-node --project prisma/tsconfig.seed.json prisma/seed.ts",
+    "db:demo": "ts-node --project prisma/tsconfig.seed.json prisma/seed-demo.ts",
+    "db:verify": "ts-node --project prisma/tsconfig.seed.json prisma/verify.ts",
+    "db:seed-math9": "ts-node --project prisma/tsconfig.seed.json prisma/seed-math9.ts"
   },
   "prisma": {
     "schema": "prisma/schema.prisma",
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+    "seed": "ts-node --project prisma/tsconfig.seed.json prisma/seed.ts"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2",

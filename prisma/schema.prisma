@@ -1,12 +1,12 @@
 // Prisma schema cho E-learning NCKH
-// PostgreSQL (Railway managed Postgres) — dung chung cho local va production qua DATABASE_URL.
+// MySQL (XAMPP local + Railway managed MySQL production) — dung chung qua DATABASE_URL.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -34,7 +34,7 @@ model Course {
   id          String   @id @default(cuid())
   title       String
   slug        String   @unique
-  description String
+  description String   @db.Text
   subject     String   @default("nckh")
   grade       String   @default("university")
   thumbnail   String?
@@ -60,7 +60,7 @@ model Module {
 model Lesson {
   id       String @id @default(cuid())
   title    String
-  content  String
+  content  String @db.Text
   order    Int
   moduleId String
   module   Module @relation(fields: [moduleId], references: [id], onDelete: Cascade)
@@ -107,8 +107,8 @@ model Quiz {
 model Question {
   id      String @id @default(cuid())
   quizId  String
-  text    String
-  options String
+  text    String @db.Text
+  options String @db.Text
   answer  String
   quiz    Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
 }
@@ -117,7 +117,7 @@ model Attempt {
   id        String    @id @default(cuid())
   userId    String
   quizId    String
-  answers   String
+  answers   String    @db.Text
   score     Float
   startedAt DateTime  @default(now())
   endedAt   DateTime?
@@ -131,7 +131,7 @@ model SurveyResponse {
   id        String   @id @default(cuid())
   userId    String
   type      String
-  answers   String
+  answers   String   @db.Text
   createdAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id])

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   ArrowRight, Play, Star, CheckCircle, Sparkle, Trophy, TrendUp,
@@ -85,69 +85,79 @@ const TESTIMONIALS = [
 export default function Home() {
   const [activeGrade, setActiveGrade] = useState("grade10");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    function onScroll() { setScrolled(window.scrollY > 40); }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <div className="bg-white overflow-x-hidden">
-      {/* ── NAVBAR ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-white/60 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="relative w-9 h-9">
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-400 to-cyan-500 opacity-80 blur-sm scale-110 group-hover:opacity-100 transition-opacity"></div>
-                <div className="relative w-9 h-9 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
-                  <GraduationCap weight="fill" className="w-5 h-5 text-white" />
-                </div>
-              </div>
-              <span className="text-xl font-bold tracking-tight">
-                <span className="text-gray-900">Tram</span>
-                <span className="text-gradient">OnThi</span>
-              </span>
-            </Link>
-
-            <nav className="hidden md:flex items-center gap-1">
-              {[{ label: "Khóa học", href: "#khoa-hoc" }, { label: "Tính năng", href: "#tinh-nang" }].map((l) => (
-                <a key={l.href} href={l.href} className="px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all">
-                  {l.label}
-                </a>
-              ))}
-            </nav>
-
-            <div className="hidden md:flex items-center gap-3">
-              <Link href="/login" className="text-sm font-medium text-gray-600 hover:text-gray-900 px-4 py-2 transition-colors">
-                Đăng nhập
-              </Link>
-              <div className="border-animated border-animated-sm">
-                <Link href="/register" className="block text-sm font-semibold bg-linear-to-r from-emerald-500 to-cyan-500 text-white px-5 py-2 rounded-lg hover:shadow-lg hover:shadow-emerald-500/30 transition-all">
-                  Đăng ký miễn phí
-                </Link>
+      {/* ── NAVBAR (floating pill) ── */}
+      <header className="fixed top-0 inset-x-0 z-50 px-4 md:px-8 py-4">
+        <div
+          className={`max-w-7xl mx-auto flex items-center justify-between gap-4 rounded-full px-4 sm:px-6 py-2.5 transition-all duration-300 ${
+            scrolled
+              ? "bg-white/85 backdrop-blur-xl border border-gray-900/5 shadow-[0_8px_30px_rgb(0,0,0,0.08)]"
+              : "bg-white/70 backdrop-blur-xl border border-gray-900/5 shadow-[0_4px_20px_rgb(0,0,0,0.04)]"
+          }`}
+        >
+          <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
+            <div className="relative w-9 h-9">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-500 opacity-80 blur-sm scale-110 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative w-9 h-9 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center shadow-lg">
+                <GraduationCap weight="fill" className="w-5 h-5 text-white" />
               </div>
             </div>
+            <span className="text-xl font-bold tracking-tight">
+              <span className="text-gray-900">Tram</span>
+              <span className="text-gradient">OnThi</span>
+            </span>
+          </Link>
 
-            <button
-              type="button"
-              aria-label={menuOpen ? "Đóng menu" : "Mở menu"}
-              className="md:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              {menuOpen ? <X className="w-5 h-5" /> : <List className="w-5 h-5" />}
-            </button>
+          <nav className="hidden md:flex items-center gap-1">
+            {[{ label: "Khóa học", href: "#khoa-hoc" }, { label: "Tính năng", href: "#tinh-nang" }].map((l) => (
+              <a key={l.href} href={l.href} className="px-4 py-2 rounded-full text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-900/5 transition-all">
+                {l.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+            <Link href="/login" className="text-sm font-medium text-gray-600 hover:text-gray-900 px-4 py-2 rounded-full transition-colors">
+              Đăng nhập
+            </Link>
+            <Link href="/register" className="text-sm font-semibold bg-linear-to-r from-emerald-500 to-cyan-500 text-white px-5 py-2 rounded-full hover:shadow-lg hover:shadow-emerald-500/30 active:scale-95 transition-all">
+              Đăng ký miễn phí
+            </Link>
           </div>
+
+          <button
+            type="button"
+            aria-label={menuOpen ? "Đóng menu" : "Mở menu"}
+            className="md:hidden p-2 rounded-full hover:bg-gray-900/5 transition-colors flex-shrink-0"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <X className="w-5 h-5" /> : <List className="w-5 h-5" />}
+          </button>
         </div>
         {menuOpen && (
-          <div className="md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-xl px-4 py-4 space-y-2 animate-fade-in">
-            <a href="#khoa-hoc" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">Khóa học</a>
-            <a href="#tinh-nang" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">Tính năng</a>
-            <div className="flex gap-2 pt-2">
-              <Link href="/login" className="flex-1 text-sm font-medium border border-gray-200 text-gray-700 px-4 py-2.5 rounded-xl hover:bg-gray-50 transition-colors text-center">Đăng nhập</Link>
-              <Link href="/register" className="flex-1 text-sm font-semibold bg-linear-to-r from-emerald-500 to-cyan-500 text-white px-4 py-2.5 rounded-xl text-center">Đăng ký</Link>
+          <div className="md:hidden max-w-7xl mx-auto mt-2 rounded-3xl bg-white/95 backdrop-blur-xl border border-gray-900/5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] px-4 py-3 space-y-1 animate-fade-in">
+            <a href="#khoa-hoc" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 rounded-2xl text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">Khóa học</a>
+            <a href="#tinh-nang" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 rounded-2xl text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">Tính năng</a>
+            <div className="flex gap-2 pt-2 border-t border-gray-100 mt-2">
+              <Link href="/login" className="flex-1 text-sm font-medium border border-gray-200 text-gray-700 px-4 py-2.5 rounded-full hover:bg-gray-50 transition-colors text-center">Đăng nhập</Link>
+              <Link href="/register" className="flex-1 text-sm font-semibold bg-linear-to-r from-emerald-500 to-cyan-500 text-white px-4 py-2.5 rounded-full text-center">Đăng ký</Link>
             </div>
           </div>
         )}
       </header>
 
       {/* ── HERO ── */}
-      <section className="relative min-h-[92vh] flex items-center bg-white pt-16">
+      <section className="relative min-h-[92vh] flex items-center bg-white pt-28">
         {/* Blobs trong overflow-hidden riêng để không cắt badge nổi */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-emerald-100 blur-[120px] opacity-60"></div>

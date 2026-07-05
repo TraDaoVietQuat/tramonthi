@@ -31,7 +31,7 @@ export default function Navbar() {
           href={user ? "/dashboard" : "/"}
           className="flex items-center gap-2 font-bold text-gray-900"
         >
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-500">
+          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500">
             <GraduationCap size={16} weight="fill" className="text-white" />
           </div>
           TramOnThi
@@ -43,7 +43,7 @@ export default function Navbar() {
             {user.role === "INSTRUCTOR" && (
               <Link
                 href="/instructor"
-                className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm transition-colors ${
+                className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-sm transition-colors ${
                   pathname.startsWith("/instructor")
                     ? "bg-emerald-50 text-emerald-700"
                     : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
@@ -55,7 +55,7 @@ export default function Navbar() {
             )}
             <Link
               href="/dashboard"
-              className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm transition-colors ${
+              className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-sm transition-colors ${
                 pathname.startsWith("/dashboard") || pathname.startsWith("/course")
                   ? "bg-emerald-50 text-emerald-700"
                   : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
@@ -74,7 +74,7 @@ export default function Navbar() {
               <span className="hidden text-xs text-gray-400 sm:block">{user.name}</span>
               <button
                 onClick={logout}
-                className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
+                className="flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 active:scale-95"
               >
                 <SignOut size={13} />
                 Đăng xuất
@@ -82,7 +82,7 @@ export default function Navbar() {
               {/* Mobile menu button */}
               <button
                 onClick={() => setMenuOpen((o) => !o)}
-                className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 md:hidden"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-gray-600 hover:bg-gray-100 md:hidden"
                 aria-label="Mở menu"
               >
                 {menuOpen ? <X size={18} /> : <List size={18} />}
@@ -90,12 +90,12 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/login" className="text-sm font-medium text-gray-600 hover:text-gray-900">
+              <Link href="/login" className="rounded-full px-3 py-1.5 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors">
                 Đăng nhập
               </Link>
               <Link
                 href="/register"
-                className="rounded-lg bg-emerald-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-600"
+                className="rounded-full bg-emerald-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-600 active:scale-95 transition-all"
               >
                 Đăng ký
               </Link>
@@ -108,11 +108,11 @@ export default function Navbar() {
       {menuOpen && user && (
         <div className="border-t border-gray-100 bg-white px-4 py-3 md:hidden">
           {user.role === "INSTRUCTOR" && (
-            <Link href="/instructor" className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+            <Link href="/instructor" className="flex items-center gap-2 rounded-full px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
               <ChalkboardTeacher size={16} /> Cổng giảng viên
             </Link>
           )}
-          <Link href="/dashboard" className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+          <Link href="/dashboard" className="flex items-center gap-2 rounded-full px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
             <BookOpen size={16} /> Khóa học của tôi
           </Link>
         </div>

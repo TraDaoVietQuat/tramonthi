@@ -168,21 +168,20 @@ export default function Home() {
       </header>
 
       {/* ── HERO ── */}
-      <section className="relative h-screen w-full overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
-        {/* Video ở đúng độ phân giải gốc (496×864, không phóng to), viền mờ dần hòa vào nền thay vì khung cứng */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden items-center justify-end lg:flex lg:w-[55%]">
-          <video
-            src="/videos/hoa-hoc-10-demo.mp4"
-            aria-label="Video giới thiệu TramOnThi"
-            className="hero-video-fade h-auto max-h-[864px] w-auto max-w-[496px] opacity-90"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent"></div>
+      <section className="relative h-screen w-full overflow-hidden bg-black">
+        {/* Video giờ đã ở tỉ lệ ngang 16:9 (1280x720), phủ full màn hình không cần khung/viền mờ nữa */}
+        <video
+          src="/videos/hoa-hoc-10-demo.mp4"
+          aria-label="Video giới thiệu TramOnThi"
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-black/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
 
         <div className="relative z-10 flex h-full flex-col justify-between px-6 pb-10 pt-28 sm:pb-12 sm:pt-32 md:px-12 md:pb-16 md:pt-36 lg:px-16">
           <div className="max-w-3xl">

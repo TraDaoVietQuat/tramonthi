@@ -3,6 +3,9 @@ import bcrypt from "bcryptjs";
 import type { CourseData } from "./seed-data/types";
 // Lớp 9
 import { MATH_9_COURSE } from "./seed-data/math-9";
+import { PHYSICS_9_COURSE } from "./seed-data/physics-9";
+import { CHEMISTRY_9_COURSE } from "./seed-data/chemistry-9";
+import { ENGLISH_9_COURSE } from "./seed-data/english-9";
 // Lớp 10
 import { ENGLISH_COURSE } from "./seed-data/english";
 import { MATH_COURSE } from "./seed-data/math";
@@ -31,6 +34,9 @@ const prisma = new PrismaClient();
 const ALL_COURSES: CourseData[] = [
   // Lớp 9
   MATH_9_COURSE,
+  PHYSICS_9_COURSE,
+  CHEMISTRY_9_COURSE,
+  ENGLISH_9_COURSE,
   // Lớp 10
   ENGLISH_COURSE,
   MATH_COURSE,

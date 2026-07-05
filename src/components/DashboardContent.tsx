@@ -124,7 +124,7 @@ export default function DashboardContent({
               key={g.key}
               type="button"
               onClick={() => handleSelectGrade(g.key)}
-              className={`flex flex-1 flex-col items-center rounded-xl px-1.5 py-2 transition sm:px-3 sm:py-3 ${
+              className={`flex flex-1 flex-col items-center rounded-xl px-1.5 py-2 transition active:scale-95 sm:px-3 sm:py-3 ${
                 active ? "bg-emerald-500 text-white shadow" : "text-gray-500 hover:bg-gray-50"
               }`}
             >

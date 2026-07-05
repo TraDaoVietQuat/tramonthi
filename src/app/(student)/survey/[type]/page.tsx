@@ -27,6 +27,7 @@ export default function SurveyPage() {
   const [submitted, setSubmitted] = useState(false);
   const [alreadyDone, setAlreadyDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [warning, setWarning] = useState("");
 
   const checkExisting = useCallback(async () => {
     const res = await fetch(`/api/survey?type=${type}`);
@@ -39,9 +40,10 @@ export default function SurveyPage() {
 
   async function handleSubmit() {
     if (Object.keys(answers).length < QUESTIONS.length) {
-      alert("Vui lòng trả lời tất cả câu hỏi.");
+      setWarning("Vui lòng trả lời tất cả câu hỏi trước khi gửi.");
       return;
     }
+    setWarning("");
     setSubmitting(true);
     await fetch("/api/survey", {
       method: "POST",
@@ -118,12 +120,18 @@ export default function SurveyPage() {
           ))}
         </div>
 
+        {warning && (
+          <div className="mt-6 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
+            {warning}
+          </div>
+        )}
+
         <div className="mt-6 flex items-center justify-between">
           <span className="text-sm text-zinc-500">{Object.keys(answers).length}/{QUESTIONS.length} câu đã trả lời</span>
           <button
             onClick={handleSubmit}
             disabled={submitting}
-            className="rounded-lg bg-emerald-400 px-6 py-2.5 text-sm font-medium text-zinc-950 disabled:opacity-60"
+            className="rounded-lg bg-emerald-400 px-6 py-2.5 text-sm font-medium text-zinc-950 transition-all active:scale-[0.98] disabled:opacity-60 disabled:active:scale-100"
           >
             {submitting ? "Đang gửi..." : "Gửi khảo sát"}
           </button>

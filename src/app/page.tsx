@@ -325,7 +325,7 @@ export default function Home() {
                   <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center border border-emerald-100">
                     <Play weight="fill" className="w-7 h-7 text-emerald-600" />
                   </div>
-                  <span className="text-xs px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 font-medium">192 Bài học</span>
+                  <span className="text-xs px-3 py-1.5 rounded-md bg-emerald-50 text-emerald-600 border border-emerald-200 font-medium">192 Bài học</span>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Bài giảng chi tiết đầy đủ</h3>
                 <p className="text-gray-500 leading-relaxed mb-6">192 bài học từ lớp 10 đến ôn thi ĐH, giảng giải từng bước, bám sát SGK Kết nối tri thức 2022.</p>
@@ -360,7 +360,7 @@ export default function Home() {
                   <div className="w-14 h-14 bg-cyan-50 rounded-2xl flex items-center justify-center border border-cyan-100">
                     <Users weight="fill" className="w-7 h-7 text-cyan-600" />
                   </div>
-                  <span className="text-xs px-3 py-1.5 rounded-full bg-cyan-50 text-cyan-600 border border-cyan-200 font-medium">AI Chatbot</span>
+                  <span className="text-xs px-3 py-1.5 rounded-md bg-cyan-50 text-cyan-600 border border-cyan-200 font-medium">AI Chatbot</span>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Trợ lý AI hỗ trợ 24/7</h3>
                 <p className="text-gray-500 leading-relaxed mb-6">Đặt câu hỏi bất cứ lúc nào và nhận giải đáp tức thì từ AI được đào tạo chuyên về chương trình THPT Việt Nam.</p>

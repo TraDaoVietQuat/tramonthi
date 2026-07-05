@@ -56,3 +56,7 @@ next-env.d.ts
 # downloaded Railway log exports
 logs.*.csv
 logs.*.json
+
+# AI coding-agent skill tooling (local dev aid only, not app runtime code)
+.agents/
+skills-lock.json

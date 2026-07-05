@@ -43,7 +43,11 @@ export default function Navbar() {
             {user.role === "INSTRUCTOR" && (
               <Link
                 href="/instructor"
-                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm transition-colors ${
+                  pathname.startsWith("/instructor")
+                    ? "bg-emerald-50 text-emerald-700"
+                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                }`}
               >
                 <ChalkboardTeacher size={15} />
                 Cổng giảng viên
@@ -51,7 +55,11 @@ export default function Navbar() {
             )}
             <Link
               href="/dashboard"
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+              className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm transition-colors ${
+                pathname.startsWith("/dashboard") || pathname.startsWith("/course")
+                  ? "bg-emerald-50 text-emerald-700"
+                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+              }`}
             >
               <BookOpen size={15} />
               Khóa học

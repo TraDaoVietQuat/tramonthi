@@ -16,6 +16,7 @@ export default function QuizPage() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [result, setResult] = useState<{ score: number; correct: number; total: number } | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [warning, setWarning] = useState("");
   const startedAt = useRef(new Date().toISOString());
 
   const fetchQuiz = useCallback(async () => {
@@ -31,9 +32,10 @@ export default function QuizPage() {
     if (!quiz) return;
     const unanswered = quiz.questions.filter((q) => !answers[q.id]);
     if (unanswered.length > 0) {
-      alert(`Còn ${unanswered.length} câu chưa trả lời.`);
+      setWarning(`Còn ${unanswered.length} câu chưa trả lời.`);
       return;
     }
+    setWarning("");
     setSubmitting(true);
     const res = await fetch(`/api/quiz/${quizId}/submit`, {
       method: "POST",
@@ -164,12 +166,17 @@ export default function QuizPage() {
             </div>
 
             {/* Submit */}
+            {warning && (
+              <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
+                {warning}
+              </div>
+            )}
             <div className="mt-6 flex justify-end">
               <button
                 type="button"
                 onClick={handleSubmit}
                 disabled={submitting || answered < quiz.questions.length}
-                className="rounded-lg bg-emerald-500 px-8 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-600 disabled:opacity-50"
+                className="rounded-lg bg-emerald-500 px-8 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-emerald-600 active:scale-[0.98] disabled:opacity-50 disabled:active:scale-100"
               >
                 {submitting ? "Đang nộp..." : "Nộp bài"}
               </button>

@@ -12,8 +12,7 @@
     "db:seed": "ts-node --project prisma/tsconfig.seed.json prisma/seed.ts",
     "db:demo": "ts-node --project prisma/tsconfig.seed.json prisma/seed-demo.ts",
     "db:verify": "ts-node --project prisma/tsconfig.seed.json prisma/verify.ts",
-    "db:seed-math9": "ts-node --project prisma/tsconfig.seed.json prisma/seed-math9.ts",
-    "db:cleanup-test-users": "ts-node --project prisma/tsconfig.seed.json prisma/cleanup-test-users.ts"
+    "db:seed-math9": "ts-node --project prisma/tsconfig.seed.json prisma/seed-math9.ts"
   },
   "prisma": {
     "schema": "prisma/schema.prisma",

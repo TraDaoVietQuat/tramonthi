@@ -32,6 +32,7 @@ interface Props {
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const GRADES = [
+  { key: "9",          label: "Lớp 9" },
   { key: "10",         label: "Lớp 10" },
   { key: "11",         label: "Lớp 11" },
   { key: "12",         label: "Lớp 12" },

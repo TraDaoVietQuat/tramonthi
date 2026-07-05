@@ -27,7 +27,7 @@ export interface CourseData {
   title: string;
   slug: string;
   subject: "english" | "math" | "physics" | "chemistry" | "history" | "exam-prep" | "nckh";
-  grade: "10" | "11" | "12" | "university";
+  grade: "9" | "10" | "11" | "12" | "university";
   description: string;
   thumbnail?: string;
   published: boolean;

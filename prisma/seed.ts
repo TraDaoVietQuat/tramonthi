@@ -1,6 +1,8 @@
 import { PrismaClient, Role } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import type { CourseData } from "./seed-data/types";
+// Lớp 9
+import { MATH_9_COURSE } from "./seed-data/math-9";
 // Lớp 10
 import { ENGLISH_COURSE } from "./seed-data/english";
 import { MATH_COURSE } from "./seed-data/math";
@@ -27,6 +29,8 @@ const prisma = new PrismaClient();
 
 // Thêm môn mới vào đây — chỉ cần import file và push vào mảng
 const ALL_COURSES: CourseData[] = [
+  // Lớp 9
+  MATH_9_COURSE,
   // Lớp 10
   ENGLISH_COURSE,
   MATH_COURSE,

@@ -14,7 +14,7 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
-  const isDev = process.env.NODE_ENV === "development";
+  const isDev = process.env.NODE_ENV === "development" || !process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || process.env.NEXT_PUBLIC_SKIP_RECAPTCHA === "true";
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

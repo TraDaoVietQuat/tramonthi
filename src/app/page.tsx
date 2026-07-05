@@ -99,8 +99,8 @@ export default function Home() {
         <div
           className={`max-w-7xl mx-auto flex items-center justify-between gap-4 rounded-full px-4 sm:px-6 py-2.5 transition-all duration-300 ${
             scrolled
-              ? "bg-white/85 backdrop-blur-xl border border-gray-900/5 shadow-[0_8px_30px_rgb(0,0,0,0.08)]"
-              : "bg-white/70 backdrop-blur-xl border border-gray-900/5 shadow-[0_4px_20px_rgb(0,0,0,0.04)]"
+              ? "bg-gray-100/90 backdrop-blur-xl border border-gray-900/5 shadow-[0_8px_30px_rgb(0,0,0,0.08)]"
+              : "bg-white/10 backdrop-blur-md border border-white/15 shadow-none"
           }`}
         >
           <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
@@ -111,21 +111,32 @@ export default function Home() {
               </div>
             </div>
             <span className="text-xl font-bold tracking-tight">
-              <span className="text-gray-900">Tram</span>
+              <span className={scrolled ? "text-gray-900" : "text-white"}>Tram</span>
               <span className="text-gradient">OnThi</span>
             </span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
             {[{ label: "Khóa học", href: "#khoa-hoc" }, { label: "Tính năng", href: "#tinh-nang" }].map((l) => (
-              <a key={l.href} href={l.href} className="px-4 py-2 rounded-full text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-900/5 transition-all">
+              <a
+                key={l.href}
+                href={l.href}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  scrolled ? "text-gray-600 hover:text-gray-900 hover:bg-gray-900/5" : "text-white/80 hover:text-white hover:bg-white/10"
+                }`}
+              >
                 {l.label}
               </a>
             ))}
           </nav>
 
           <div className="hidden md:flex items-center gap-2 flex-shrink-0">
-            <Link href="/login" className="text-sm font-medium text-gray-600 hover:text-gray-900 px-4 py-2 rounded-full transition-colors">
+            <Link
+              href="/login"
+              className={`text-sm font-medium px-4 py-2 rounded-full transition-colors ${
+                scrolled ? "text-gray-600 hover:text-gray-900" : "text-white/80 hover:text-white"
+              }`}
+            >
               Đăng nhập
             </Link>
             <Link href="/register" className="text-sm font-semibold bg-linear-to-r from-emerald-500 to-cyan-500 text-white px-5 py-2 rounded-full hover:shadow-lg hover:shadow-emerald-500/30 active:scale-95 transition-all">
@@ -136,7 +147,9 @@ export default function Home() {
           <button
             type="button"
             aria-label={menuOpen ? "Đóng menu" : "Mở menu"}
-            className="md:hidden p-2 rounded-full hover:bg-gray-900/5 transition-colors flex-shrink-0"
+            className={`md:hidden p-2 rounded-full transition-colors flex-shrink-0 ${
+              scrolled ? "text-gray-600 hover:bg-gray-900/5" : "text-white hover:bg-white/10"
+            }`}
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <X className="w-5 h-5" /> : <List className="w-5 h-5" />}

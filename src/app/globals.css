@@ -147,6 +147,12 @@ body {
 .border-inner-lg { border-radius: calc(1.5rem - 1px); }
 .border-inner-md { border-radius: calc(1rem - 1px); }
 
+/* ─── Hero video soft edge fade (blends into bg, no hard box) ──── */
+.hero-video-fade {
+  -webkit-mask-image: radial-gradient(ellipse 70% 75% at center, black 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 75% at center, black 55%, transparent 100%);
+}
+
 /* ─── Scroll reveal (slide/fade in on scroll) ───────────────────── */
 .reveal {
   opacity: 0;

@@ -167,21 +167,22 @@ export default function Home() {
         )}
       </header>
 
-      {/* ── HERO (fullscreen video background) ── */}
-      <section className="relative h-screen w-full overflow-hidden bg-black">
-        <video
-          src="/videos/hoa-hoc-10-demo.mp4"
-          aria-label="Video giới thiệu TramOnThi"
-          className="absolute inset-0 h-full w-full object-cover object-[70%_center]"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        />
-        {/* Gradient nối liền video và nội dung (không dùng lớp đen phẳng gây đứt đoạn) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-black/10"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/30"></div>
+      {/* ── HERO ── */}
+      <section className="relative h-screen w-full overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
+        {/* Video ở đúng độ phân giải gốc (496×864, không phóng to), viền mờ dần hòa vào nền thay vì khung cứng */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden items-center justify-end lg:flex lg:w-[55%]">
+          <video
+            src="/videos/hoa-hoc-10-demo.mp4"
+            aria-label="Video giới thiệu TramOnThi"
+            className="hero-video-fade h-auto max-h-[864px] w-auto max-w-[496px] opacity-90"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent"></div>
 
         <div className="relative z-10 flex h-full flex-col justify-between px-6 pb-10 pt-28 sm:pb-12 sm:pt-32 md:px-12 md:pb-16 md:pt-36 lg:px-16">
           <div className="max-w-3xl">
@@ -214,7 +215,7 @@ export default function Home() {
       </section>
 
       {/* ── STATS ── */}
-      <section className="bg-linear-to-r from-emerald-500 via-teal-500 to-cyan-500 gradient-animate py-5">
+      <section className="bg-linear-to-r from-emerald-700 via-teal-700 to-cyan-700 gradient-animate py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {STATS.map((stat, i) => (

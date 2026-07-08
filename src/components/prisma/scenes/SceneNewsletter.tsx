@@ -1,6 +1,7 @@
 "use client";
 
 import { forwardRef, useState } from "react";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Scene from "../cinematic/Scene";
 
@@ -16,10 +17,13 @@ const SceneNewsletter = forwardRef<HTMLElement>(function SceneNewsletter(_props,
       <div className="cine-scene__content flex h-full flex-col items-center justify-center px-4 md:px-8">
         <div className="cine-text w-full max-w-2xl">
           <div className="w-full rounded-[2.5rem] p-6 sm:p-10 md:p-14 flex flex-col items-center justify-center text-center relative overflow-hidden isolate shadow-2xl bg-[#F3F1EC]">
-            <img
+            <Image
               src="/images/newsletter-bg.jpg"
               alt=""
-              className="absolute inset-0 w-full h-full object-cover -z-10 opacity-80"
+              fill
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 672px"
+              className="object-cover -z-10 opacity-80"
             />
 
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-gray-900">Nhận bản tin học tập.</h2>

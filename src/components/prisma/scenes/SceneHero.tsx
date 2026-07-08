@@ -14,6 +14,8 @@ const SceneHero = forwardRef<HTMLElement>(function SceneHero(_props, ref) {
           loop
           muted
           playsInline
+          preload="auto"
+          poster="/images/hero-poster.jpg"
           className="absolute inset-0 w-full h-full object-cover"
           src="/videos/prisma-hero.mp4"
         />

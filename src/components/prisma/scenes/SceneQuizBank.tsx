@@ -1,6 +1,7 @@
 "use client";
 
-import { forwardRef } from "react";
+import { forwardRef, useRef } from "react";
+import { useInView } from "framer-motion";
 import Scene from "../cinematic/Scene";
 import WordsPullUpMultiStyle from "../WordsPullUpMultiStyle";
 
@@ -11,17 +12,25 @@ const STATS = [
 ];
 
 const SceneQuizBank = forwardRef<HTMLElement>(function SceneQuizBank(_props, ref) {
+  const bgRef = useRef<HTMLDivElement>(null);
+  // Defer the background video fetch until this scene (4th of 6) is actually
+  // about to scroll into view, instead of downloading it on initial page load.
+  const nearView = useInView(bgRef, { once: true, margin: "600px 0px 600px 0px" });
+
   return (
     <Scene ref={ref} id="quiz-bank" height={150} direction="horizontal">
-      <div className="cine-scene-bg bg-black">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-          src="/videos/hoa-hoc-10-demo.mp4"
-        />
+      <div className="cine-scene-bg bg-black" ref={bgRef}>
+        {nearView && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
+            src="/videos/hoa-hoc-10-demo.mp4"
+          />
+        )}
         <div className="absolute inset-0 bg-linear-to-r from-black via-black/70 to-black/40" />
 
         {STATS.map((s, i) => (

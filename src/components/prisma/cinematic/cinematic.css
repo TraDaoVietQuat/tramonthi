@@ -1,0 +1,119 @@
+/* ─── Cinematic scroll journey (Trang chủ) ──────────────────────── */
+
+.cine-world {
+  position: relative;
+  width: 100%;
+  background: #0a0a0a;
+}
+
+.cine-scene {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  --p: 0;
+}
+
+.cine-scene-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.cine-scene[data-direction="horizontal"] .cine-scene-bg {
+  width: 116%;
+  transform: translate3d(calc(var(--p) * -13%), 0, 0);
+}
+
+.cine-scene[data-direction="vertical"] .cine-scene-bg {
+  height: 116%;
+  transform: translate3d(0, calc(var(--p) * -13%), 0);
+}
+
+.cine-scene__content {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+}
+
+.cine-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at center, transparent 42%, rgba(0, 0, 0, 0.55) 78%, rgba(0, 0, 0, 0.92) 100%);
+}
+
+.cine-text {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--delay, 0ms);
+}
+
+.is-entered .cine-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cine-scroll-hint {
+  position: fixed;
+  right: 32px;
+  bottom: 28px;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.cine-scroll-hint__line {
+  width: 36px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes cine-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+.roadmap-orbit {
+  animation: roadmap-spin 18s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes roadmap-spin {
+  to {
+    stroke-dashoffset: -140;
+  }
+}
+
+@keyframes cine-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+.cine-stat-number {
+  font-variant-numeric: tabular-nums;
+}
